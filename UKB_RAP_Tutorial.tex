@@ -1,0 +1,982 @@
+\documentclass[11pt,a4paper]{article}
+
+% ========== 基础包 ==========
+\usepackage[UTF8,fontset=none]{ctex}
+\usepackage[margin=3cm,top=2.5cm,bottom=2.5cm,headheight=22pt]{geometry}
+\usepackage{fontspec}
+
+% 字体设置
+\setCJKmainfont[BoldFont=STHeiti,ItalicFont=STKaiti]{STSong}
+\setCJKsansfont{STHeiti}
+\setCJKmonofont{STFangsong}
+
+% 英文字体设置为Times New Roman
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+% ========== 图形和颜色 ==========
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{xcolor}
+
+% ========== 水印 ==========
+\usepackage{tikz}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[rotate=45,font={\rmfamily\bfseries\fontsize{80}{96}\selectfont},text=gray!20,opacity=0.15] at (current page.center) 
+      {Cancan};
+  \end{tikzpicture}
+}
+
+% 定义配色
+\definecolor{primary}{RGB}{0,102,204}
+\definecolor{secondary}{RGB}{220,53,69}
+\definecolor{accent}{RGB}{40,167,69}
+\definecolor{lightbg}{RGB}{248,249,250}
+\definecolor{darktext}{RGB}{33,37,41}
+\definecolor{codebg}{RGB}{245,245,245}
+\definecolor{orange}{RGB}{255,140,0}
+
+% ========== 超链接 ==========
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=secondary,
+    urlcolor=primary,
+    pdftitle={UKB RAP平台使用教程},
+    pdfauthor={Cancan},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+}
+
+% ========== 标题格式 ==========
+\usepackage{titlesec}
+
+% 一级标题: 16pt
+\titleformat{\section}
+  {\color{primary}\fontsize{16}{19}\bfseries}
+  {\thesection}{0.8em}{}
+  [\vspace{0.2em}{\color{primary}\titlerule[1.5pt]}\vspace{0.5em}]
+\titlespacing*{\section}{0pt}{1.8em}{1em}
+
+% 二级标题: 14pt
+\titleformat{\subsection}
+  {\color{darktext}\fontsize{14}{17}\bfseries}
+  {\thesubsection}{0.7em}{}
+\titlespacing*{\subsection}{0pt}{1.5em}{0.8em}
+
+% 三级标题: 12pt
+\titleformat{\subsubsection}
+  {\color{darktext}\fontsize{12}{14}\bfseries}
+  {\thesubsubsection}{0.6em}{}
+\titlespacing*{\subsubsection}{0pt}{1.2em}{0.6em}
+
+% ========== 页眉页脚 ==========
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\color{primary}\footnotesize\bfseries UKB RAP平台使用教程}
+\fancyhead[R]{\color{darktext}\footnotesize\bfseries 第 \thepage\ 页}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{primary}\leaders\hrule height \headrulewidth\hfill}}
+\fancyfoot{}
+\setlength{\headheight}{21.3pt}
+
+% ========== 列表 ==========
+\usepackage{enumitem}
+\setlist{itemsep=0.2em,parsep=0em,topsep=0.3em,leftmargin=2em}
+\setlist[itemize,1]{label=\textcolor{primary}{$\bullet$}}
+\setlist[enumerate,1]{label=\textcolor{primary}{\arabic*.}}
+
+% ========== 代码 ==========
+\usepackage{listings}
+\lstset{
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{codebg},
+    frame=single,
+    frameround=tttt,
+    rulecolor=\color{lightbg},
+    breaklines=true,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\color{primary}\bfseries,
+    commentstyle=\color{accent}\itshape,
+    stringstyle=\color{secondary},
+    showstringspaces=false,
+    tabsize=4,
+    xleftmargin=2em,
+    xrightmargin=1em,
+}
+
+% ========== 表格 ==========
+\usepackage{booktabs}
+\usepackage{array}
+
+% ========== 图表标题 ==========
+\usepackage{caption}
+\captionsetup{
+    font={small,sf},
+    labelfont={bf,color=primary},
+    textfont={color=darktext},
+    skip=8pt,
+}
+
+% ========== 行距和段落 ==========
+\usepackage{setspace}
+\setstretch{1.3}
+\setlength{\parskip}{0.3em}
+\setlength{\parindent}{2em}
+
+% ========== 自定义框 ==========
+\setlength{\fboxsep}{12pt}
+\setlength{\fboxrule}{1.2pt}
+
+\newenvironment{tipbox}{%
+  \par\vspace{0.8em}
+  \noindent\fcolorbox{accent}{lightbg}{%
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}
+      \vspace{0.3em}
+      {\bfseries\color{accent}💡 提示}
+      \par\vspace{0.5em}
+}{%
+      \vspace{0.3em}
+    \end{minipage}%
+  }
+  \par\vspace{0.8em}
+}
+
+\newenvironment{warningbox}{%
+  \par\vspace{0.8em}
+  \noindent\fcolorbox{secondary}{yellow!10}{%
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}
+      \vspace{0.3em}
+      {\bfseries\color{secondary}⚠️ 注意}
+      \par\vspace{0.5em}
+}{%
+      \vspace{0.3em}
+    \end{minipage}%
+  }
+  \par\vspace{0.8em}
+}
+
+\newenvironment{infobox}{%
+  \par\vspace{0.8em}
+  \noindent\fcolorbox{primary}{blue!5}{%
+    \begin{minipage}{\dimexpr\textwidth-2\fboxsep-2\fboxrule}
+      \vspace{0.3em}
+      {\bfseries\color{primary}ℹ️ 信息}
+      \par\vspace{0.5em}
+}{%
+      \vspace{0.3em}
+    \end{minipage}%
+  }
+  \par\vspace{0.8em}
+}
+
+% ========== 图片路径 ==========
+\graphicspath{{./}}
+
+% ========== 文档信息 ==========
+\title{}
+\author{}
+\date{}
+
+\begin{document}
+
+% ========== 封面 ==========
+\begin{titlepage}
+    \centering
+    \vspace*{3cm}
+    
+    % 主标题
+    {\fontsize{32}{38}\selectfont\bfseries\color{primary} UKB RAP 平台使用教程\par}
+    \vspace{0.8cm}
+    {\fontsize{15}{18}\selectfont\color{darktext} UK Biobank Research Analysis Platform Tutorial\par}
+    
+    \vspace{2cm}
+    
+    % 副标题框
+    {\color{primary}\rule{0.8\textwidth}{2pt}}
+    \vspace{0.6cm}
+    
+    {\fontsize{16}{20}\selectfont\bfseries\color{darktext} 云端生物信息学分析平台完整指南\par}
+    
+    \vspace{0.6cm}
+    {\color{primary}\rule{0.8\textwidth}{2pt}}
+    
+    \vspace{1cm}
+    
+    % 功能说明
+    {\fontsize{11}{14}\selectfont\color{darktext}
+    涵盖项目管理 · 工具使用 · 数据分析 · 任务监控 · JupyterLab 等核心功能\par}
+    
+    \vspace{1.2cm}
+    
+    % 版本信息
+    \begin{center}
+    {\fontsize{11}{14}\selectfont
+    \begin{tabular}{@{}rl@{}}
+        \color{primary}\textbf{日期:} & \today \\
+        \color{primary}\textbf{作者:} & Cancan \\
+        \color{primary}\textbf{许可:} & 仅供个人学习使用 \\
+    \end{tabular}
+    }
+    \end{center}
+    
+    \vspace{1cm}
+    
+    % 版权与许可声明
+    {\fontsize{11}{14}\selectfont\color{secondary}\textbf{版权所有 © 2025 Cancan}\par}
+    \vspace{0.25cm}
+    
+    {\fontsize{10}{13}\selectfont\color{darktext}
+    本作品采用\href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans}{\textcolor{primary}{\textbf{知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议}}}进行许可\par}
+    \vspace{0.25cm}
+    
+    {\fontsize{10}{13}\selectfont\color{secondary}\textbf{严禁商用、转载、修改或用于任何盈利目的}\par}
+    \vspace{0.4cm}
+    
+    {\fontsize{9}{12}\selectfont\color{gray}
+    本教程旨在帮助研究人员快速掌握 UKB RAP 平台的使用方法\par
+    \vspace{0.15cm}
+    适合生物信息学研究者、数据分析师及相关领域从业者\par}
+    
+\end{titlepage}
+
+% ========== 目录 ==========
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+% ========== 正文 ==========
+\setcounter{page}{1}
+
+\section{简介}
+
+UK Biobank Research Analysis Platform (UKB RAP) 是一个基于云计算的研究分析平台,为研究人员提供了强大的数据分析和处理能力。本教程将详细介绍如何使用该平台进行数据分析工作。
+
+\begin{warningbox}
+\textbf{重要声明与使用条款}
+
+\textbf{版权与许可:}本教程版权归作者所有,采用\href{https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans}{\textcolor{primary}{\textbf{CC BY-NC-ND 4.0国际许可协议}}}进行许可。
+
+\textbf{您可以:}
+• 在遵守协议条款的前提下,分享本教程的完整副本
+
+\textbf{您不可以:}
+• \textcolor{secondary}{\textbf{商业使用}} - 不得将本教程用于任何商业目的或盈利活动
+• \textcolor{secondary}{\textbf{修改演绎}} - 不得对本教程进行修改、改编或二次创作
+• \textcolor{secondary}{\textbf{二次销售}} - 不得以任何形式销售或转售本教程
+• \textcolor{secondary}{\textbf{去除署名}} - 分享时必须保留作者署名和版权声明
+
+\textbf{违反上述条款将追究法律责任。}
+
+\textbf{使用限制:}本教程不代表UK Biobank官方立场。使用UKB RAP平台时,您必须:
+
+• 严格遵守UK Biobank的数据使用协议和相关法律法规
+
+• 确保已获得合法的数据访问权限和研究伦理批准
+
+• 不得将平台数据用于商业目的或未经授权的研究
+
+• 妥善保管账户信息,不得与他人共享访问权限
+
+• 注意平台使用成本,合理配置计算资源
+
+\textbf{免责声明:}本教程作者不对因使用本教程或UKB RAP平台而产生的任何直接或间接损失、数据泄露、费用超支、研究违规等问题承担责任。所有使用者应自行承担使用平台的全部责任和风险。
+\end{warningbox}
+
+\subsection{平台特点}
+
+\begin{itemize}
+    \item 基于DNAnexus平台构建
+    \item 提供海量的UK Biobank数据资源
+    \item 支持多种生物信息学分析工具
+    \item 云端计算,无需本地配置环境
+    \item 灵活的资源管理和费用控制
+    \item 支持JupyterLab交互式分析环境
+\end{itemize}
+
+\section{创建和管理Project}
+
+\subsection{创建新Project}
+
+在UKB RAP平台上,所有的分析工作都需要在Project中进行。
+
+\begin{enumerate}
+    \item 登录平台后,点击右上角的\textbf{「New Project」}按钮创建新项目
+    \item 或者点击已有的Project进入项目管理界面
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图1.png}
+    \caption{创建新Project界面}
+    \label{fig:create_project}
+\end{figure}
+
+\subsection{Project文件管理}
+
+进入Project后,您可以看到文件管理界面:
+
+\begin{itemize}
+    \item 左侧显示文件夹树形结构
+    \item 中间区域显示当前文件夹内容
+    \item 可以查看文件的类型、创建时间、大小等信息
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图2.png}
+    \caption{Project文件管理界面}
+    \label{fig:file_management}
+\end{figure}
+
+\begin{tipbox}
+新建一个存放Field ID文件的文件夹,用于存放后续分析所需的数据文件。UKB官方资源数据库里包含了所有需要的文件。
+\end{tipbox}
+
+\section{使用Tools Library}
+
+\subsection{访问工具库}
+
+UKB RAP提供了丰富的生物信息学分析工具。
+
+\begin{enumerate}
+    \item 点击顶部菜单栏的\textbf{「TOOLS」}
+    \item 进入Tools Library查看所有可用工具
+    \item 可以按名称、类别、类型等进行筛选
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图3.png}
+    \caption{Tools Library工具库}
+    \label{fig:tools_library}
+\end{figure}
+
+\subsection{常用工具}
+
+平台提供的工具包括但不限于:
+
+\begin{itemize}
+    \item \textbf{REGENIE}: 全基因组关联分析工具
+    \item \textbf{SAIGE}: 基因组关联分析工具
+    \item \textbf{Table exporter}: 表格数据导出工具
+    \item \textbf{Swiss Army Knife}: 多功能数据处理工具
+    \item 各类注释、调试工具等
+\end{itemize}
+
+\section{运行分析任务}
+
+\subsection{配置运行参数}
+
+选择工具后,需要配置运行参数:
+
+\begin{enumerate}
+    \item 点击工具的\textbf{「Run App」}按钮
+    \item 设置Job Name(任务名称)
+    \item 选择Output Location(输出位置)
+    \item 配置其他必要参数
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{图4.png}
+    \caption{配置运行参数}
+    \label{fig:run_config}
+\end{figure}
+
+\begin{warningbox}
+务必选择正确的输出位置,建议选择之前创建的Project文件夹。
+\end{warningbox}
+
+\subsection{选择输出位置}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{图5.png}
+    \caption{选择输出位置}
+    \label{fig:output_location}
+\end{figure}
+
+如图所示,选择第一个开始的Project作为输出目录。
+
+\subsection{详细的输出位置选择}
+
+在选择输出位置时,系统会弹出文件浏览器:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图6.png}
+    \caption{输出位置文件浏览器}
+    \label{fig:output_browser}
+\end{figure}
+
+\begin{itemize}
+    \item 可以浏览Project中的所有文件夹
+    \item 选择合适的文件夹作为输出位置
+    \item 建议为不同的分析任务创建不同的输出文件夹
+\end{itemize}
+
+\section{使用Table Exporter工具}
+
+Table Exporter是UKB RAP平台上常用的数据导出工具,可以将数据库中的表格数据导出为CSV等格式。
+
+\subsection{配置Table Exporter}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图7.png}
+    \caption{Table Exporter配置界面}
+    \label{fig:table_exporter_config}
+\end{figure}
+
+在配置界面中需要设置:
+
+\begin{itemize}
+    \item \textbf{Dataset or Cohort or Dashboard}: 选择要导出的数据集
+    \item \textbf{File containing Field Names}: 选择包含Field ID的文件
+    \item \textbf{Output Prefix}: 设置输出文件的前缀名称
+    \item \textbf{Output File Format}: 选择输出格式(CSV/TSV等)
+    \item \textbf{Coding Option}: 选择编码方式(建议选择RAW)
+    \item \textbf{Header Style}: 选择表头样式(如FIELD-NAME)
+\end{itemize}
+
+\subsection{选择输入数据集}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图8.png}
+    \caption{选择输入数据集}
+    \label{fig:select_dataset}
+\end{figure}
+
+在弹出的对话框中:
+
+\begin{itemize}
+    \item 浏览并选择01 Data Extraction文件夹
+    \item 选择相应的数据集文件
+\end{itemize}
+
+\subsection{查看已选择的文件}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图9.png}
+    \caption{已选择的Field ID文件}
+    \label{fig:selected_files}
+\end{figure}
+
+确认已正确选择包含Field ID的txt文件。
+
+\section{数据上传}
+
+\subsection{上传本地文件}
+
+如果需要使用本地数据进行分析:
+
+\begin{enumerate}
+    \item 点击右上角的\textbf{「Add」}按钮
+    \item 选择\textbf{「Upload Data」}
+    \item 可以拖拽文件或选择文件上传
+    \item 从本地上传到AWS UKB-RNS-Rundev
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{图10.png}
+    \caption{上传数据界面}
+    \label{fig:upload_data}
+\end{figure}
+
+\subsection{选择上传文件}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图11.png}
+    \caption{本地文件选择界面}
+    \label{fig:select_local_files}
+\end{figure}
+
+在文件选择对话框中:
+
+\begin{itemize}
+    \item 浏览本地文件系统
+    \item 选择需要上传的文件
+    \item 支持多文件选择
+    \item 可以看到文件的预览和大小信息
+\end{itemize}
+
+\begin{tipbox}
+\textbf{上传注意事项:}
+
+• 从本地上传文件
+
+• 上传前请确认文件格式正确
+
+• 注意不要上传包含个人身份信息的文件
+
+• 大文件上传可能需要较长时间
+\end{tipbox}
+
+\subsection{Table Exporter完整配置}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{图12.png}
+    \caption{Table Exporter完整配置}
+    \label{fig:table_exporter_full}
+\end{figure}
+
+完成所有参数配置后,确认:
+
+\begin{itemize}
+    \item 输入数据集已选择
+    \item Field Names文件已指定
+    \item 输出格式和选项已设置
+    \item 高级选项(如Entity和Field Names)已配置
+\end{itemize}
+
+\subsection{审查并启动任务}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图13.png}
+    \caption{审查并启动分析任务}
+    \label{fig:review_and_start}
+\end{figure}
+
+在启动任务前,需要:
+
+\begin{itemize}
+    \item 设置Job Name(任务名称)
+    \item 确认Output Location(输出位置)
+    \item 设置Priority(优先级,通常选择High)
+    \item 设置Spending Limit(花费限制,可选择Normal或High)
+    \item 选择Instance Type(实例类型)
+    \item 查看预估成本
+    \item 点击\textbf{「Launch Analysis」}启动任务
+\end{itemize}
+
+\begin{warningbox}
+\textbf{启动任务前请注意:}
+
+• 确认所有参数配置正确
+
+• 注意查看预估成本
+
+• 建议先用小数据集测试
+
+• 确保有足够的预算额度
+\end{warningbox}
+
+\section{监控任务执行}
+
+\subsection{查看任务状态}
+
+提交任务后,可以在Monitor页面查看执行情况:
+
+\begin{enumerate}
+    \item 点击顶部的\textbf{「MONITOR」}标签
+    \item 查看所有正在运行和已完成的任务
+    \item 可以看到任务的状态、执行时间、资源消耗等信息
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图14.png}
+    \caption{任务列表和状态监控}
+    \label{fig:monitor_list}
+\end{figure}
+
+在任务列表中可以看到:
+
+\begin{itemize}
+    \item 任务名称和状态
+    \item 执行时间和持续时间
+    \item 成本信息
+    \item 优先级和实例类型
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图15.png}
+    \caption{任务监控详细界面}
+    \label{fig:monitor}
+\end{figure}
+
+\subsection{任务状态说明}
+
+任务可能处于以下状态:
+
+\begin{itemize}
+    \item \textcolor{orange}{\textbf{Waiting}}: 等待中
+    \item \textcolor{accent}{\textbf{Running}}: 正在运行
+    \item \textcolor{accent}{\textbf{Done}}: 已完成
+    \item \textcolor{secondary}{\textbf{Failed}}: 失败
+    \item \textcolor{gray}{\textbf{Terminated}}: 已终止
+\end{itemize}
+
+\subsection{查看任务日志}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图16.png}
+    \caption{查看任务执行日志}
+    \label{fig:task_log}
+\end{figure}
+
+点击任务可以查看详细的执行日志:
+
+\begin{itemize}
+    \item 查看任务的实时输出
+    \item 检查是否有错误信息
+    \item 了解任务执行进度
+    \item 可以下载日志文件进行离线分析
+\end{itemize}
+
+\begin{infobox}
+\textbf{监控要点:}
+
+• 如果任务处于Running状态且正常运行,可以通过View Log查看日志信息
+
+• 可以查看CPU占比等资源使用情况
+
+• 建议定期检查任务状态,及时发现问题
+
+• 对于长时间运行的任务,注意监控成本
+\end{infobox}
+
+\section{使用JupyterLab}
+
+UKB RAP平台支持JupyterLab交互式分析环境,可以进行更灵活的数据分析和可视化。
+
+\subsection{JupyterLab列表}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图17.png}
+    \caption{JupyterLab环境列表}
+    \label{fig:jupyterlab_list}
+\end{figure}
+
+在JupyterLab页面可以:
+
+\begin{itemize}
+    \item 查看已创建的JupyterLab环境
+    \item 查看环境的版本和状态
+    \item 点击\textbf{「New JupyterLab」}创建新环境
+\end{itemize}
+
+\subsection{创建新的JupyterLab环境}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图18.png}
+    \caption{创建新的JupyterLab环境}
+    \label{fig:new_jupyterlab}
+\end{figure}
+
+创建JupyterLab环境时需要配置:
+
+\begin{itemize}
+    \item \textbf{Environment Name}: 环境名称
+    \item \textbf{Project}: 关联的Project
+    \item \textbf{Snapshot}: 快照设置(可选)
+    \item \textbf{Priority}: 优先级(建议使用High)
+    \item \textbf{Cluster Configuration}: 集群配置
+        \begin{itemize}
+            \item Single Node: 单节点
+            \item Spark Cluster: Spark集群
+        \end{itemize}
+    \item \textbf{Instance Type}: 实例类型(根据需求选择)
+    \item \textbf{Duration}: 运行时长(小时)
+    \item \textbf{Runtime}: 运行时环境(如PYTHON R)
+\end{itemize}
+
+\begin{warningbox}
+\textbf{创建JupyterLab注意事项:}
+
+• 尽量使用High优先级以减少等待时间
+
+• 根据实际需求选择合适的实例类型
+
+• 注意设置合理的运行时长
+
+• 查看预估成本,避免超出预算
+
+• 不使用时及时关闭环境以节省费用
+\end{warningbox}
+
+\subsection{在JupyterLab中工作}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.98\textwidth]{图19.png}
+    \caption{JupyterLab工作界面}
+    \label{fig:jupyterlab_interface}
+\end{figure}
+
+JupyterLab提供了完整的交互式开发环境:
+
+\begin{itemize}
+    \item 支持Python、R等多种编程语言
+    \item 可以直接访问Project中的数据文件
+    \item 支持数据可视化和交互式分析
+    \item 可以安装自定义的Python包
+    \item 支持终端命令行操作
+    \item 可以创建和编辑多种类型的文件
+\end{itemize}
+
+\begin{tipbox}
+\textbf{JupyterLab使用技巧:}
+
+• 运行代码前确保已正确加载数据
+
+• 定期保存工作进度
+
+• 使用Markdown单元格添加注释和说明
+
+• 可以通过终端安装额外的Python包
+
+• 完成工作后记得下载重要的结果文件
+\end{tipbox}
+
+\section{会话管理}
+
+\subsection{会话超时处理}
+
+UKB RAP平台会话有时间限制,当会话即将过期时:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth]{图20.png}
+    \caption{会话超时提示}
+    \label{fig:session_expire}
+\end{figure}
+
+\begin{warningbox}
+\textbf{处理方法:}
+
+• 系统会提示"Your session will expire soon"
+
+• 点击\textbf{「Continue Session」}按钮继续会话
+
+• 如果RAP会话过期,清除浏览器缓存后重新登录即可
+
+• 建议在长时间分析前先延长会话时间
+
+• 使用JupyterLab时注意会话时长设置
+\end{warningbox}
+
+\section{最佳实践建议}
+
+\subsection{项目组织}
+
+\begin{enumerate}
+    \item \textbf{合理规划文件夹结构}: 为不同类型的数据和分析结果创建独立文件夹
+        \begin{itemize}
+            \item 原始数据文件夹
+            \item 中间结果文件夹
+            \item 最终结果文件夹
+            \item Field ID文件夹
+        \end{itemize}
+    \item \textbf{命名规范}: 使用清晰、有意义的文件名和任务名
+    \item \textbf{定期清理}: 删除不需要的临时文件,节省存储空间
+    \item \textbf{文档记录}: 记录分析流程和参数设置
+\end{enumerate}
+
+\subsection{资源管理}
+
+\begin{enumerate}
+    \item \textbf{选择合适的实例类型}: 根据任务需求选择适当的计算资源
+    \item \textbf{监控资源使用}: 定期查看CPU、内存使用情况
+    \item \textbf{及时终止任务}: 对于不需要的或出错的任务及时终止,避免浪费资源
+    \item \textbf{成本控制}: 
+        \begin{itemize}
+            \item 设置合理的Spending Limit
+            \item 不使用时关闭JupyterLab环境
+            \item 选择合适的优先级
+        \end{itemize}
+\end{enumerate}
+
+\subsection{数据安全}
+
+\begin{enumerate}
+    \item \textbf{遵守数据使用协议}: 严格按照UK Biobank的数据使用规定操作
+    \item \textbf{不上传敏感信息}: 上传文件时注意不要包含个人身份信息
+    \item \textbf{定期备份}: 重要的分析结果应及时下载备份
+    \item \textbf{访问控制}: 合理设置Project的访问权限
+\end{enumerate}
+
+\subsection{分析流程}
+
+\begin{enumerate}
+    \item \textbf{先小规模测试}: 在大规模分析前,先用小数据集测试流程
+    \item \textbf{记录分析参数}: 详细记录每次分析使用的参数和配置
+    \item \textbf{查看日志}: 任务完成后检查日志,确保分析正确执行
+    \item \textbf{验证结果}: 对分析结果进行合理性检查
+    \item \textbf{版本控制}: 对于复杂的分析脚本,建议使用版本控制
+\end{enumerate}
+
+\subsection{使用Table Exporter的建议}
+
+\begin{enumerate}
+    \item \textbf{准备Field ID列表}: 提前准备好需要导出的Field ID
+    \item \textbf{选择合适的编码方式}: 根据需求选择REPLACE或其他编码选项
+    \item \textbf{注意输出格式}: CSV格式通用性好,但大文件可能需要压缩
+    \item \textbf{检查导出结果}: 导出后检查数据完整性和正确性
+\end{enumerate}
+
+\subsection{使用JupyterLab的建议}
+
+\begin{enumerate}
+    \item \textbf{选择合适的实例}: 根据数据量和计算需求选择实例类型
+    \item \textbf{设置合理时长}: 避免环境自动关闭导致工作丢失
+    \item \textbf{定期保存}: 养成定期保存的习惯
+    \item \textbf{下载重要结果}: 及时下载分析结果和脚本
+    \item \textbf{使用快照功能}: 对于重要的环境配置可以创建快照
+\end{enumerate}
+
+\section{常见问题}
+
+\subsection{任务失败怎么办?}
+
+\begin{itemize}
+    \item 查看任务的Log日志,找出错误原因
+    \item 检查输入文件格式是否正确
+    \item 确认参数设置是否合理
+    \item 检查是否有足够的存储空间
+    \item 确认Field ID文件格式正确
+    \item 如果问题持续,联系技术支持
+\end{itemize}
+
+\subsection{如何优化分析速度?}
+
+\begin{itemize}
+    \item 选择更高配置的实例类型
+    \item 合理分割大任务为多个小任务并行执行
+    \item 使用平台推荐的优化工具
+    \item 避免在高峰时段提交大量任务
+    \item 对于重复性任务,考虑使用JupyterLab
+\end{itemize}
+
+\subsection{数据下载}
+
+\begin{itemize}
+    \item 小文件可以直接通过浏览器下载
+    \item 大文件建议使用命令行工具(如dx-toolkit)
+    \item 注意下载的数据仍需遵守使用协议
+    \item 可以在JupyterLab中直接下载分析结果
+\end{itemize}
+
+\subsection{JupyterLab相关问题}
+
+\begin{itemize}
+    \item \textbf{环境启动慢}: 选择High优先级可以减少等待时间
+    \item \textbf{会话断开}: 检查网络连接,必要时重新连接
+    \item \textbf{包安装失败}: 检查包名和版本,使用pip或conda安装
+    \item \textbf{内存不足}: 选择更大内存的实例类型
+    \item \textbf{文件访问问题}: 确认文件路径正确,检查权限设置
+\end{itemize}
+
+\subsection{成本控制}
+
+\begin{itemize}
+    \item 定期检查账户余额和使用情况
+    \item 及时终止不需要的任务和环境
+    \item 选择合适的实例类型,避免过度配置
+    \item 使用Spending Limit控制单个任务的成本
+    \item 对于长时间运行的任务,评估成本效益
+\end{itemize}
+
+\section{附录}
+
+\subsection{相关资源}
+
+\begin{itemize}
+    \item \textbf{UK Biobank官网}: \url{https://www.ukbiobank.ac.uk/}
+    \item \textbf{DNAnexus文档}: \url{https://documentation.dnanexus.com/}
+    \item \textbf{RAP用户指南}: 平台内置帮助文档
+    \item \textbf{JupyterLab文档}: \url{https://jupyterlab.readthedocs.io/}
+\end{itemize}
+
+\subsection{联系方式}
+
+如有问题,可通过以下方式获取帮助:
+
+\begin{itemize}
+    \item UK Biobank技术支持邮箱
+    \item 平台内的Help菜单
+    \item 用户社区论坛
+    \item DNAnexus技术支持
+\end{itemize}
+
+\subsection{常用命令}
+
+\subsubsection{dx-toolkit命令行工具}
+
+\begin{lstlisting}[language=bash]
+# 登录
+dx login
+
+# 列出项目
+dx ls
+
+# 下载文件
+dx download <file-id>
+
+# 上传文件
+dx upload <local-file>
+
+# 查看任务状态
+dx find jobs
+\end{lstlisting}
+
+\subsubsection{JupyterLab常用操作}
+
+\begin{lstlisting}[language=python]
+# 安装Python包
+!pip install <package-name>
+
+# 列出文件
+!ls -lh
+
+# 读取数据
+import pandas as pd
+data = pd.read_csv('data.csv')
+
+# 数据可视化
+import matplotlib.pyplot as plt
+plt.plot(data['x'], data['y'])
+plt.show()
+\end{lstlisting}
+
+\section{总结}
+
+本教程详细介绍了UKB RAP平台的完整使用方法,包括:
+
+\begin{itemize}
+    \item Project的创建和管理
+    \item 工具库的使用
+    \item Table Exporter的详细配置流程
+    \item 数据上传和文件管理
+    \item 任务的配置、启动和监控
+    \item JupyterLab交互式分析环境的使用
+    \item 会话管理和最佳实践建议
+\end{itemize}
+
+希望本教程能帮助您快速上手UKB RAP平台,顺利开展研究工作。随着平台的不断更新,建议定期查看官方文档获取最新信息。
+
+\vspace{1.5cm}
+
+\begin{center}
+\Large\sffamily\color{primary}\textit{祝您研究顺利!}
+\end{center}
+
+\end{document}

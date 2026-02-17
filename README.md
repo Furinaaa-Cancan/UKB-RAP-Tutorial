@@ -1,4 +1,4 @@
-# 📚 UKB RAP 平台使用教程
+# UKB RAP 平台使用教程
 
 <div align="center">
 
@@ -8,29 +8,29 @@
 [![LaTeX](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
 [![PDF](https://img.shields.io/badge/Download-PDF-blue.svg)](./UKB_RAP_Tutorial.pdf)
 
-一份专业、详尽的 UKB RAP 云端生物信息学分析平台使用指南
+专业详尽的 UKB RAP 云端生物信息学分析平台使用指南
 
-[📥 下载PDF](./UKB_RAP_Tutorial.pdf) | [🐛 报告问题](../../issues) | [⭐ Star支持](../../stargazers)
+[下载PDF](./UKB_RAP_Tutorial.pdf) | [报告问题](../../issues) | [Star支持](../../stargazers)
 
 </div>
 
 ---
 
-## 📖 关于本教程
+## 关于本教程
 
-本教程是一份**完整的中文指南**,专为使用 UK Biobank Research Analysis Platform (UKB RAP) 的研究人员编写。涵盖从项目创建到数据分析的全流程操作,配有20张高清截图,帮助您快速掌握平台使用方法。
+本教程是一份完整的中文指南,专为使用 UK Biobank Research Analysis Platform (UKB RAP) 的研究人员编写。教程涵盖从项目创建到数据分析的全流程操作,配有20张高清截图,帮助研究人员快速掌握平台使用方法。
 
-### ✨ 教程特色
+### 教程特色
 
-- 📐 **专业排版** - 采用LaTeX排版,字体、行距、配色精心设计
-- 🎨 **视觉优化** - 三色配色方案(蓝/红/绿),层次分明
-- 📦 **彩色提示框** - 提示💡、注意⚠️、信息ℹ️三种类型
-- 📊 **图文并茂** - 20张高清截图,每步操作清晰可见
-- 📑 **完整目录** - 自动生成书签,快速定位章节
-- 🔗 **交互链接** - 章节、图表、外部URL全部可点击
-- 💧 **水印保护** - 每页带有作者水印,防止盗用
+- **专业排版** - 采用LaTeX排版系统,字体、行距、配色经过精心设计
+- **视觉优化** - 三色配色方案(蓝色/红色/绿色),层次分明,便于阅读
+- **彩色提示框** - 包含提示、注意、信息三种类型的彩色框,重点突出
+- **图文并茂** - 20张高清截图,每个操作步骤清晰可见
+- **完整目录** - 自动生成PDF书签,便于快速定位章节
+- **交互链接** - 章节引用、图表引用、外部URL全部可点击跳转
+- **水印保护** - 每页带有作者水印,防止未经授权的传播
 
-### 📚 教程内容
+### 教程内容
 
 | 章节 | 内容 |
 |------|------|
@@ -49,11 +49,11 @@
 
 ---
 
-## 🚀 快速开始
+## 快速开始
 
 ### 直接使用
 
-**推荐方式**: 直接下载编译好的PDF文档
+推荐方式:直接下载编译好的PDF文档
 
 ```bash
 # 下载PDF
@@ -101,7 +101,7 @@ pdflatex UKB_RAP_Tutorial.tex
 
 ---
 
-## 📁 项目结构
+## 项目结构
 
 ```
 .
@@ -112,11 +112,11 @@ pdflatex UKB_RAP_Tutorial.tex
 └── .gitignore               # Git忽略配置
 ```
 
-**注意**: 图片文件(图1.png ~ 图20.png)未包含在仓库中,但不影响PDF的使用。
+注意:图片文件(图1.png ~ 图20.png)未包含在仓库中,但不影响PDF的使用。
 
 ---
 
-## 📜 版权与许可
+## 版权与许可
 
 ### 版权声明
 
@@ -124,41 +124,41 @@ pdflatex UKB_RAP_Tutorial.tex
 
 本作品采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans) 进行许可。
 
-### 您可以
+### 许可权限
 
-- ✅ **分享** - 在遵守协议条款的前提下,分享本教程的完整副本
+**您可以:**
+- 在遵守协议条款的前提下,分享本教程的完整副本
 
-### 您不可以
+**您不可以:**
+- 商业使用 - 不得将本教程用于任何商业目的或盈利活动
+- 修改演绎 - 不得对本教程进行修改、改编或二次创作
+- 二次销售 - 不得以任何形式销售或转售本教程
+- 去除署名 - 分享时必须保留作者署名和版权声明
 
-- ❌ **商业使用** - 不得将本教程用于任何商业目的或盈利活动
-- ❌ **修改演绎** - 不得对本教程进行修改、改编或二次创作
-- ❌ **二次销售** - 不得以任何形式销售或转售本教程
-- ❌ **去除署名** - 分享时必须保留作者署名和版权声明
-
-**违反上述条款将追究法律责任。**
-
----
-
-## 🤝 贡献指南
-
-本教程采用 CC BY-NC-ND 4.0 协议,**不接受修改和演绎**。
-
-但欢迎您:
-- 🐛 提交Issue报告错误或提出建议
-- 💬 在Discussions中分享使用心得
-- ⭐ Star本项目以示支持
+违反上述条款将追究法律责任。
 
 ---
 
-## 📮 联系方式
+## 贡献指南
 
-- **作者**: Cancan
-- **GitHub**: [@Furinaaa-Cancan](https://github.com/Furinaaa-Cancan)
-- **问题反馈**: [提交Issue](../../issues)
+本教程采用 CC BY-NC-ND 4.0 协议,不接受修改和演绎。
+
+欢迎您:
+- 提交Issue报告错误或提出建议
+- 在Discussions中分享使用心得
+- Star本项目以示支持
 
 ---
 
-## ⚠️ 免责声明
+## 联系方式
+
+- 作者:Cancan
+- GitHub:[@Furinaaa-Cancan](https://github.com/Furinaaa-Cancan)
+- 问题反馈:[提交Issue](../../issues)
+
+---
+
+## 免责声明
 
 本教程不代表UK Biobank官方立场。使用UKB RAP平台时,您必须:
 
@@ -171,9 +171,9 @@ pdflatex UKB_RAP_Tutorial.tex
 
 ---
 
-## 🌟 Star History
+## Star History
 
-如果这个教程对您有帮助,请给个Star支持一下!
+如果本教程对您的研究工作有所帮助,欢迎给予Star支持。
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Furinaaa-Cancan/UKB-RAP-Tutorial&type=Date)](https://star-history.com/#Furinaaa-Cancan/UKB-RAP-Tutorial&Date)
 
@@ -181,8 +181,8 @@ pdflatex UKB_RAP_Tutorial.tex
 
 <div align="center">
 
-**Made with ❤️ by Cancan**
+Made with LaTeX by Cancan
 
-[⬆ 回到顶部](#-ukb-rap-平台使用教程)
+[回到顶部](#ukb-rap-平台使用教程)
 
 </div>

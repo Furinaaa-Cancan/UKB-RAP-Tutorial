@@ -51,53 +51,19 @@
 
 ## 快速开始
 
-### 直接使用
+### 下载PDF文档
 
-推荐方式:直接下载编译好的PDF文档
+直接下载编译好的PDF文档:
 
 ```bash
-# 下载PDF
+# 使用wget下载
 wget https://github.com/Furinaaa-Cancan/UKB-RAP-Tutorial/raw/main/UKB_RAP_Tutorial.pdf
 
-# 或使用curl
+# 或使用curl下载
 curl -L -O https://github.com/Furinaaa-Cancan/UKB-RAP-Tutorial/raw/main/UKB_RAP_Tutorial.pdf
 ```
 
-### 从源码编译
-
-如果您想自定义或修改教程,可以从LaTeX源码编译:
-
-#### 系统要求
-
-- **TeX发行版**: 
-  - macOS: [MacTeX](https://www.tug.org/mactex/)
-  - Linux: TeX Live
-  - Windows: [MiKTeX](https://miktex.org/) 或 TeX Live
-
-- **必需的LaTeX包**: ctex, graphicx, hyperref, geometry, fancyhdr, listings, xcolor, float, enumitem, titlesec, tikz, eso-pic
-
-#### 编译步骤
-
-**方法一: 使用编译脚本 (推荐)**
-
-```bash
-chmod +x compile.sh
-./compile.sh
-```
-
-**方法二: 手动编译**
-
-```bash
-# 使用XeLaTeX编译(推荐,支持中文)
-xelatex UKB_RAP_Tutorial.tex
-xelatex UKB_RAP_Tutorial.tex  # 再次编译生成目录和交叉引用
-
-# 或使用PDFLaTeX
-pdflatex UKB_RAP_Tutorial.tex
-pdflatex UKB_RAP_Tutorial.tex
-```
-
-编译成功后会生成 `UKB_RAP_Tutorial.pdf` 文件。
+或直接在GitHub页面点击下载:[UKB_RAP_Tutorial.pdf](./UKB_RAP_Tutorial.pdf)
 
 ---
 
@@ -105,14 +71,12 @@ pdflatex UKB_RAP_Tutorial.tex
 
 ```
 .
-├── UKB_RAP_Tutorial.tex      # LaTeX源文件
-├── UKB_RAP_Tutorial.pdf      # 编译生成的PDF文档
-├── compile.sh                # 一键编译脚本
+├── UKB_RAP_Tutorial.pdf      # 完整的教程PDF文档
 ├── README.md                 # 本说明文件
 └── .gitignore               # Git忽略配置
 ```
 
-注意:图片文件(图1.png ~ 图20.png)未包含在仓库中,但不影响PDF的使用。
+注意:为保护版权,仅提供PDF文档供下载使用,不提供LaTeX源文件。
 
 ---
 
@@ -141,11 +105,11 @@ pdflatex UKB_RAP_Tutorial.tex
 
 ## 贡献指南
 
-本教程采用 CC BY-NC-ND 4.0 协议,不接受修改和演绎。
+本教程采用 CC BY-NC-ND 4.0 协议,不接受修改和演绎。为保护版权,仅提供PDF文档,不提供源文件。
 
 欢迎您:
-- 提交Issue报告错误或提出建议
-- 在Discussions中分享使用心得
+- 提交Issue报告文档中的错误或不清晰之处
+- 在Discussions中分享使用心得和经验
 - Star本项目以示支持
 
 ---

@@ -57,10 +57,10 @@
 
 ```bash
 # 下载PDF
-wget https://github.com/Furinaaa-Cancan/ukb-rap-tutorial/raw/main/UKB_RAP_Tutorial.pdf
+wget https://github.com/Furinaaa-Cancan/UKB-RAP-Tutorial/raw/main/UKB_RAP_Tutorial.pdf
 
 # 或使用curl
-curl -L -O https://github.com/Furinaaa-Cancan/ukb-rap-tutorial/raw/main/UKB_RAP_Tutorial.pdf
+curl -L -O https://github.com/Furinaaa-Cancan/UKB-RAP-Tutorial/raw/main/UKB_RAP_Tutorial.pdf
 ```
 
 ### 从源码编译
@@ -175,7 +175,7 @@ pdflatex UKB_RAP_Tutorial.tex
 
 如果这个教程对您有帮助,请给个Star支持一下!
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Furinaaa-Cancan/ukb-rap-tutorial&type=Date)](https://star-history.com/#Furinaaa-Cancan/ukb-rap-tutorial&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Furinaaa-Cancan/UKB-RAP-Tutorial&type=Date)](https://star-history.com/#Furinaaa-Cancan/UKB-RAP-Tutorial&Date)
 
 ---
 

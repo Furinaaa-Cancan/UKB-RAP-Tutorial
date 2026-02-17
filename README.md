@@ -120,7 +120,7 @@ pdflatex UKB_RAP_Tutorial.tex
 
 ### 版权声明
 
-**版权所有 © 2025 Cancan**
+**版权所有 © 2026 Cancan**
 
 本作品采用 [知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans) 进行许可。
 
